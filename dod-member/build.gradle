@@ -1,5 +1,6 @@
 buildscript {
     ext {
+        domainName = 'dod-member'
         springBootVersion = '2.2.2.RELEASE'
     }
     repositories {
@@ -22,6 +23,13 @@ subprojects {
 
     sourceCompatibility = '11'
 
+    jar {
+        enabled = true
+    }
+    bootJar {
+        enabled = false
+    }
+
     repositories {
         mavenCentral()
     }
@@ -40,5 +48,11 @@ subprojects {
 project(':member-api') {
     dependencies {
         compile project(':member-domain')
+    }
+}
+
+project(':member-domain') {
+    dependencies {
+        compile project(':member-meta')
     }
 }
