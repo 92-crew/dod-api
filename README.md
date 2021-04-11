@@ -1,7 +1,7 @@
 # dod-api
 do or die
 ---
-###1. dod-member
+**1. dod-member**
   ㄴ member-api 
   ㄴ member-domain
   ㄴ member-meta
@@ -12,7 +12,7 @@ dev env.
   - jpa
   - web MVC
 
-###2. content-api 
+**2. content-api**
   ㄴ content-api 
   ㄴ content-domain
   ㄴ content-meta
