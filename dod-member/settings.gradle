@@ -1,0 +1,3 @@
+rootProject.name = 'dod-member'
+include 'member-api'
+include 'member-domain'
