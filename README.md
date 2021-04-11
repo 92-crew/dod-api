@@ -2,9 +2,9 @@
 do or die
 ---
 **1. dod-member**
-  ㄴ member-api 
-  ㄴ member-domain
-  ㄴ member-meta
+  - member-api 
+  - member-domain
+  - member-meta
 
 dev env.
   - gradle
@@ -13,9 +13,9 @@ dev env.
   - web MVC
 
 **2. content-api**
-  ㄴ content-api 
-  ㄴ content-domain
-  ㄴ content-meta
+  - content-api 
+  - content-domain
+  - content-meta
   
 dev env.
   - gradle
