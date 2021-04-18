@@ -1,6 +1,5 @@
 buildscript {
     ext {
-        domainName = 'dod-member'
         springBootVersion = '2.2.2.RELEASE'
     }
     repositories {
@@ -38,21 +37,21 @@ subprojects {
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-        
+
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
         testImplementation 'org.mockito:mockito-core'
 
     }
 }
 
-project(':member-api') {
+project(':content-domain') {
     dependencies {
-        compile project(':member-domain')
+        compile project(':content-meta')
     }
 }
 
-project(':member-domain') {
+project(':content-api') {
     dependencies {
-        compile project(':member-meta')
+        compile project(':content-domain')
     }
 }

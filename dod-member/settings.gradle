@@ -1,3 +1,4 @@
 rootProject.name = 'dod-member'
 include 'member-api'
 include 'member-domain'
+include 'member-meta'

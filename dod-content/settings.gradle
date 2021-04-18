@@ -1,0 +1,4 @@
+rootProject.name = 'dod-content'
+include 'content-api'
+include 'content-domain'
+include 'content-meta'
