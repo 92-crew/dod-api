@@ -1,4 +1,4 @@
-package com.crew92.doordie.member.api.configurations;
+package com.crew92.doordie.member.api.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

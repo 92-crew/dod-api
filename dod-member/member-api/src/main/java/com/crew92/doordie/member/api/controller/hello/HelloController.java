@@ -1,4 +1,4 @@
-package com.crew92.doordie.member.api.controller;
+package com.crew92.doordie.member.api.controller.hello;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
