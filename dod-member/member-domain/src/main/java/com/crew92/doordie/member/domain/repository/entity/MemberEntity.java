@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Setter
 @Getter
 @Entity(name = "dod_members")
-public class MemberEntity extends BaseEntity {
+public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

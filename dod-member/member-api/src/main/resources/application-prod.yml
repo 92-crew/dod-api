@@ -8,13 +8,13 @@ spring:
 
   datasource:
     member-slave:
-      url: jdbc:mysql:aurora://dod-dev-instance-1.c2p40zyxldlp.us-east-2.rds.amazonaws.com:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+      jdbc-url: jdbc:mysql:aurora://dod-dev-instance-1.c2p40zyxldlp.us-east-2.rds.amazonaws.com:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
       username: admin
       password: a1d2m3i4n5
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: org.mariadb.jdbc.Driver
 
     member-master:
-      url: jdbc:mysql:aurora://dod-dev-instance-1.c2p40zyxldlp.us-east-2.rds.amazonaws.com:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+      jdbc-url: jdbc:mysql:aurora://dod-dev-instance-1.c2p40zyxldlp.us-east-2.rds.amazonaws.com:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
       username: admin
       password: a1d2m3i4n5
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: org.mariadb.jdbc.Driver

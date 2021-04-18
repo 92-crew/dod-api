@@ -31,4 +31,5 @@ public class MemberController {
     public MemberDto join(@RequestBody @Valid MemberCreateCondition condition) {
         return memberService.join(condition);
     }
+
 }

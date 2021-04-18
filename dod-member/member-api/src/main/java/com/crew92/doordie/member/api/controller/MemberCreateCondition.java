@@ -6,10 +6,11 @@ import lombok.Setter;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Getter
 @Setter
-public class MemberCreateCondition {
+public class MemberCreateCondition implements Serializable {
 
     @Size(max = 200, message = "이메일은 200자 이내여야 합니다.")
     @NotNull(message = "이메일은 필수입니다.")
