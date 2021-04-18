@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan(basePackageClasses = {MemberDomain.class, MemberApi.class})
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class, SecurityAutoConfiguration.class})
+@ComponentScan(basePackageClasses = {MemberApi.class, MemberDomain.class})
 public class MemberApiApplication {
 
     public static void main(String[] args) {

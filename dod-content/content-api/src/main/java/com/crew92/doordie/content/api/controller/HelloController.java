@@ -1,6 +1,6 @@
-package com.crew92.doordie.member.api.controller.hello;
+package com.crew92.doordie.content.api.controller;
 
-import com.crew92.doordie.member.domain.provider.HelloProvider;
+import com.crew92.doordie.content.domain.provider.HelloProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,12 +13,12 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "hello. member-api";
+        return "hello. content-api";
     }
 
     @GetMapping("/helloMeta")
     public String helloMeta() {
-        return helloProvider.getHello().toString();
+        return helloProvider.getHello().name();
     }
 
 }
