@@ -1,19 +1,17 @@
 package com.crew92.doordie.member.api.controller;
 
+import static java.util.stream.Collectors.toList;
+
 import com.crew92.doordie.member.api.dto.MemberDto;
 import com.crew92.doordie.member.api.service.MemberService;
 import com.crew92.doordie.member.domain.provider.MemberProvider;
+import java.util.List;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequiredArgsConstructor
