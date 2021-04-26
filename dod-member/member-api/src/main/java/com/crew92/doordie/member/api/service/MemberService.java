@@ -3,14 +3,17 @@ package com.crew92.doordie.member.api.service;
 import static java.util.Objects.isNull;
 
 import com.crew92.doordie.member.api.controller.MemberCreateCondition;
+import com.crew92.doordie.member.api.controller.MemberLoginCondition;
 import com.crew92.doordie.member.api.dto.MemberDto;
+import com.crew92.doordie.member.api.exception.LoginFailException;
 import com.crew92.doordie.member.domain.model.Member;
 import com.crew92.doordie.member.domain.provider.MemberProvider;
 import com.crew92.doordie.member.domain.repository.entity.MemberEntity;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -23,12 +26,23 @@ public class MemberService {
         member.setName(condition.getName());
         member.setPassword(condition.getPassword());
 
+        log.info("MemberService.join - [input] email: {}, name: {}", condition.getEmail(), condition.getName());
         return MemberDto.of(memberProvider.create(member));
     }
 
     public boolean isNotDuplicated(String email) {
-        List<MemberEntity> members = memberProvider.findByEmail(email);
+        log.info("MemberService.isNotDuplicated - [input] email: {}", email);
+        return isNull(memberProvider.findByEmail(email));
+    }
 
-        return isNull(members) || members.isEmpty();
+    public MemberDto login(MemberLoginCondition condition) {
+        MemberEntity member = memberProvider.findByEmail(condition.getEmail());
+        if (member.getPassword().equals(condition.getPassword())) {
+            log.info("MemberService.login - success!! email: {}, name: {}", member.getEmail(), member.getName());
+            return MemberDto.of(member);
+        }
+
+        log.error("MemberService.login - login fail!! [input] email: {}, pw: {}, [db] pw: {}", condition.getEmail(), condition.getPassword(), member.getPassword());
+        throw new LoginFailException();
     }
 }
