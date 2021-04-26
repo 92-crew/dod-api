@@ -1,9 +1,9 @@
-package com.crew92.doordie.content.domain.provider;
+package com.crew92.doordie.content.domain.provider.hello;
+
+import static com.crew92.doordie.content.meta.HelloMeta.HELLO;
 
 import com.crew92.doordie.content.meta.HelloMeta;
 import org.springframework.stereotype.Component;
-
-import static com.crew92.doordie.content.meta.HelloMeta.HELLO;
 
 @Component
 public class HelloProvider {
