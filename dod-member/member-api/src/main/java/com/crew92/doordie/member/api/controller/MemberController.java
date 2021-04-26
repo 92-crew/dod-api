@@ -36,4 +36,9 @@ public class MemberController {
         return memberService.join(condition);
     }
 
+    @PostMapping("/api/v1/member/login")
+    public MemberDto login(@RequestBody @Valid MemberLoginCondition condition) {
+        return memberService.login(condition);
+    }
+
 }

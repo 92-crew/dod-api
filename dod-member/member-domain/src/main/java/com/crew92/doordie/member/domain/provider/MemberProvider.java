@@ -21,8 +21,8 @@ public class MemberProvider {
         return memberRepository.findById(memberId).orElse(null);
     }
 
-    public List<MemberEntity> findByEmail(String email) {
-        return memberRepository.findAllByEmail(email);
+    public MemberEntity findByEmail(String email) {
+        return memberRepository.findByEmail(email);
     }
 
     public MemberEntity create(Member member) {
