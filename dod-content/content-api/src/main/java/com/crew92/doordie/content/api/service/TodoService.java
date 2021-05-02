@@ -8,6 +8,7 @@ import com.crew92.doordie.content.api.dto.todo.TodoDto;
 import com.crew92.doordie.content.api.dto.todo.TodosDto;
 import com.crew92.doordie.content.api.exception.InvalidMemberIdException;
 import com.crew92.doordie.content.api.exception.TodoNotFoundException;
+import com.crew92.doordie.content.api.utils.DateTimeUtils;
 import com.crew92.doordie.content.domain.provider.TodoProvider;
 import com.crew92.doordie.content.domain.repository.entity.TodoEntity;
 import lombok.RequiredArgsConstructor;
@@ -52,7 +53,7 @@ public class TodoService {
         Map<Date, List<TodoEntity>> dueDateMap = entities.stream().collect(groupingBy(TodoEntity::getDueDate));
         List<TodoContentDto> todos = new ArrayList<>();
         for (Date dueDate : dueDateMap.keySet()) {
-            todos.add(of(dueDate.toString(), dueDateMap.get(dueDate)));
+            todos.add(of(DateTimeUtils.toString(dueDate), dueDateMap.get(dueDate)));
         }
 
         return TodosDto.of(todos);

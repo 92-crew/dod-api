@@ -17,12 +17,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "dod_todos")
+@Entity(name = "dod_todos")
+@Table
 public class TodoEntity extends CommonEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Long memberId;
