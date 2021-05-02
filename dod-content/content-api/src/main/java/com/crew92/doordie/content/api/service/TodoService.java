@@ -1,19 +1,29 @@
 package com.crew92.doordie.content.api.service;
 
-import static com.crew92.doordie.content.api.dto.TodoDto.transfer;
-import static java.util.Objects.isNull;
-import static java.util.stream.Collectors.toList;
-
 import com.crew92.doordie.content.api.controller.TodoCreateCondition;
 import com.crew92.doordie.content.api.controller.TodoUpdateCondition;
-import com.crew92.doordie.content.api.dto.TodoDto;
+import com.crew92.doordie.content.api.converter.TodoConverter;
+import com.crew92.doordie.content.api.dto.todo.TodoContentDto;
+import com.crew92.doordie.content.api.dto.todo.TodoDto;
+import com.crew92.doordie.content.api.dto.todo.TodosDto;
 import com.crew92.doordie.content.api.exception.InvalidMemberIdException;
 import com.crew92.doordie.content.api.exception.TodoNotFoundException;
 import com.crew92.doordie.content.domain.provider.TodoProvider;
 import com.crew92.doordie.content.domain.repository.entity.TodoEntity;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import static com.crew92.doordie.content.api.dto.todo.TodoContentDto.of;
+import static com.crew92.doordie.content.api.dto.todo.TodoDto.transfer;
+import static java.util.Objects.isNull;
+import static java.util.stream.Collectors.groupingBy;
+import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Service
 @RequiredArgsConstructor
@@ -29,19 +39,35 @@ public class TodoService {
         return transfer(todoProvider.findById(todoId));
     }
 
+    public TodosDto getByMemberId(Long memberId) {
+        if (isNull(memberId) || memberId == 0) {
+            throw new InvalidMemberIdException();
+        }
+
+        List<TodoEntity> entities = todoProvider.findByMemberId(memberId);
+        if(isEmpty(entities)) {
+            return new TodosDto();
+        }
+
+        Map<Date, List<TodoEntity>> dueDateMap = entities.stream().collect(groupingBy(TodoEntity::getDueDate));
+        List<TodoContentDto> todos = new ArrayList<>();
+        for (Date dueDate : dueDateMap.keySet()) {
+            todos.add(of(dueDate.toString(), dueDateMap.get(dueDate)));
+        }
+
+        return TodosDto.of(todos);
+    }
+
     public TodoDto create(Long memberId, TodoCreateCondition condition) {
         if (isNull(memberId) || memberId == 0) {
             throw new InvalidMemberIdException();
         }
 
-        TodoEntity entity = new TodoEntity();
-        entity.setMemberId(memberId);
-        entity.setTitle(condition.getTitle());
-        entity.setStatus(condition.getStatus());
-        entity.setDueDate(condition.getDueDate());
+        TodoEntity entity = TodoConverter.create(memberId, condition);
 
         return transfer(todoProvider.create(entity));
     }
+
 
     public TodoDto update(Long memberId, TodoUpdateCondition condition) {
         if (isNull(memberId) || memberId == 0) {
@@ -53,23 +79,11 @@ public class TodoService {
             throw new TodoNotFoundException();
         }
 
-        entity.setTitle(condition.getTitle());
-        entity.setStatus(condition.getStatus());
-        entity.setDueDate(condition.getDueDate());
+        TodoConverter.update(condition, entity);
 
         return transfer(todoProvider.update(entity));
     }
 
-    public List<TodoDto> getByMemberId(Long memberId) {
-        if (isNull(memberId) || memberId == 0) {
-            throw new InvalidMemberIdException();
-        }
-
-        return todoProvider.findByMemberId(memberId).stream()
-            .map(TodoDto::transfer)
-            .collect(toList()
-            );
-    }
 
     public void removeById(Long id) {
         todoProvider.removeById(id);

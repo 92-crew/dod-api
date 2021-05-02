@@ -1,22 +1,14 @@
 package com.crew92.doordie.content.api.controller;
 
-import com.crew92.doordie.content.api.dto.TodoDto;
+import com.crew92.doordie.content.api.dto.todo.TodoDto;
+import com.crew92.doordie.content.api.dto.todo.TodosDto;
 import com.crew92.doordie.content.api.exception.InvalidMemberIdException;
 import com.crew92.doordie.content.api.service.TodoService;
-import java.util.List;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,7 +22,7 @@ public class TodoController {
     }
 
     @GetMapping("/api/content/v1/todos")
-    public List<TodoDto> getByMemberId(@RequestHeader(HeaderNames.MEMBER_ID) Long memberId) {
+    public TodosDto getByMemberId(@RequestHeader(HeaderNames.MEMBER_ID) Long memberId) {
         return todoService.getByMemberId(memberId);
     }
 

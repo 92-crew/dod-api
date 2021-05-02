@@ -1,8 +1,10 @@
-package com.crew92.doordie.content.api.dto;
+package com.crew92.doordie.content.api.dto.todo;
 
 import com.crew92.doordie.content.domain.repository.entity.TodoEntity;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -12,7 +14,7 @@ public class TodoDto {
     private Long memberId;
     private String title;
     private String status;
-    private String dueDate;
+    private Date dueDate;
 
     public static TodoDto transfer(TodoEntity entity) {
         TodoDto dto = new TodoDto();
@@ -20,8 +22,9 @@ public class TodoDto {
         dto.setMemberId(entity.getMemberId());
         dto.setTitle(entity.getTitle());
         dto.setStatus(entity.getStatus().name());
-        dto.setDueDate(entity.getDueDate().toString());
+        dto.setDueDate(entity.getDueDate());
 
         return dto;
     }
+
 }
