@@ -1,6 +1,6 @@
-package com.crew92.doordie.content.api.controller;
+package com.crew92.doordie.content.api.controller.hello;
 
-import com.crew92.doordie.content.domain.provider.HelloProvider;
+import com.crew92.doordie.content.domain.provider.hello.HelloProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
