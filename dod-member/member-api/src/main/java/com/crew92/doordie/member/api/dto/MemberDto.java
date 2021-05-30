@@ -8,11 +8,13 @@ import lombok.Setter;
 @Setter
 public class MemberDto {
 
+    private long id;
     private String email;
     private String name;
 
     public static MemberDto of(MemberEntity entity) {
         MemberDto dto = new MemberDto();
+        dto.setId(entity.getMemberId());
         dto.setEmail(entity.getEmail());
         dto.setName(entity.getName());
 

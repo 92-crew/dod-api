@@ -8,4 +8,8 @@ public class LoginFailException extends RuntimeException {
         super(DEFAULT_MESSAGE);
     }
 
+    public LoginFailException(String message) {
+        super(message);
+    }
+
 }
