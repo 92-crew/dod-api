@@ -16,15 +16,15 @@ spring:
 
   datasource:
     content-slave:
-      jdbc-url: jdbc:mysql://localhost:3307/dod_content?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+      jdbc-url: jdbc:mysql://localhost:3306/dod_content?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnection=true
       username: root
       password: adminadmin
-      driver-class-name: com.mysql.cj.jdbc.Driver
+    #      driver-class-name: com.mysql.cj.jdbc.Driver
 
     content-master:
-      jdbc-url: jdbc:mysql://localhost:3307/dod_content?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+      jdbc-url: jdbc:mysql://localhost:3306/dod_content?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnection=true
       username: root
       password: adminadmin
-      driver-class-name: com.mysql.cj.jdbc.Driver
+#      driver-class-name: com.mysql.cj.jdbc.Driver
 
 
