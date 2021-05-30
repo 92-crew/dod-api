@@ -15,13 +15,13 @@ spring:
 
   datasource:
     member-slave:
-      jdbc-url: jdbc:mysql://localhost:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnection=true
+      jdbc-url: jdbc:mysql://localhost:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnection=true&allowPublicKeyRetrieval=true
       username: root
       password: adminadmin
 #      driver-class-name: org.mysql.cj.jdbc.Driver
 
     member-master:
-      jdbc-url: jdbc:mysql://localhost:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnection=true
+      jdbc-url: jdbc:mysql://localhost:3306/dod_member?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&autoReconnection=true&allowPublicKeyRetrieval=true
       username: root
       password: adminadmin
 #      driver-class-name: org.mysql.cj.jdbc.Driver
