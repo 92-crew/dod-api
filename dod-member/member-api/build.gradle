@@ -1,4 +1,6 @@
 
+version = '1.0.0.RELEASE'
+
 dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
