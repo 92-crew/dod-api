@@ -5,6 +5,7 @@ import static java.util.Objects.isNull;
 import com.crew92.doordie.member.api.controller.MemberCreateCondition;
 import com.crew92.doordie.member.api.controller.MemberLoginCondition;
 import com.crew92.doordie.member.api.dto.MemberDto;
+import com.crew92.doordie.member.api.exception.JoinFailException;
 import com.crew92.doordie.member.api.exception.LoginFailException;
 import com.crew92.doordie.member.domain.model.Member;
 import com.crew92.doordie.member.domain.provider.MemberProvider;
@@ -21,6 +22,10 @@ public class MemberService {
     private final MemberProvider memberProvider;
 
     public MemberDto join(MemberCreateCondition condition) {
+        if (isDuplicated(condition.getEmail())) {
+            throw new JoinFailException("이미 가입된 이메일입니다.");
+        }
+
         Member member = new Member();
         member.setEmail(condition.getEmail());
         member.setName(condition.getName());
@@ -33,6 +38,10 @@ public class MemberService {
     public boolean isNotDuplicated(String email) {
         log.info("MemberService.isNotDuplicated - [input] email: {}", email);
         return isNull(memberProvider.findByEmail(email));
+    }
+
+    public boolean isDuplicated(String email) {
+        return !isNotDuplicated(email);
     }
 
     public MemberDto login(MemberLoginCondition condition) {
