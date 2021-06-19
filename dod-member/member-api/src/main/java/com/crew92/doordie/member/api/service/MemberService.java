@@ -47,7 +47,7 @@ public class MemberService {
     public MemberDto login(MemberLoginCondition condition) {
         MemberEntity member = memberProvider.findByEmail(condition.getEmail());
         if (isNull(member)) {
-            throw new LoginFailException(condition.getEmail() + "은 존재하지 않는 계정정보입니다.");
+            throw new LoginFailException("'" + condition.getEmail() + "' 은 존재하지 않는 계정정보입니다.");
         }
 
         if (member.getPassword().equals(condition.getPassword())) {
