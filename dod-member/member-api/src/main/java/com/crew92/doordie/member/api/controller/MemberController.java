@@ -1,19 +1,21 @@
 package com.crew92.doordie.member.api.controller;
 
-import static java.util.stream.Collectors.toList;
-
 import com.crew92.doordie.member.api.dto.MemberDto;
+import com.crew92.doordie.member.api.exception.ErrorResponse;
+import com.crew92.doordie.member.api.exception.LoginFailException;
 import com.crew92.doordie.member.api.service.MemberService;
 import com.crew92.doordie.member.domain.provider.MemberProvider;
-import java.util.List;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+import static com.crew92.doordie.member.api.exception.ErrorResponse.of;
+import static java.util.stream.Collectors.toList;
 
 @Slf4j
 @RestController
@@ -41,6 +43,14 @@ public class MemberController {
     @PostMapping("/api/v1/member/login")
     public MemberDto login(@RequestBody @Valid MemberLoginCondition condition) {
         return memberService.login(condition);
+    }
+
+    @ExceptionHandler(LoginFailException.class)
+    protected ResponseEntity<ErrorResponse> loginFailException(LoginFailException e) {
+        final ErrorResponse response = of(HttpStatus.BAD_REQUEST, e.getMessage());
+        log.error("LoginFailException caused !! - message: {}", e.getMessage(), e);
+
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
 }
