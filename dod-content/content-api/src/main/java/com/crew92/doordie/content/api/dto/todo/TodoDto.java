@@ -1,10 +1,9 @@
 package com.crew92.doordie.content.api.dto.todo;
 
 import com.crew92.doordie.content.domain.repository.entity.TodoEntity;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.Date;
 
 @Getter
 @Setter
